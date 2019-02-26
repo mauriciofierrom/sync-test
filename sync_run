@@ -1,0 +1,21 @@
+[0m[[0m[0minfo[0m] [0m[0mLoading global plugins from /home/mauricio/.sbt/1.0/plugins/project[0m
+[0m[[0m[0minfo[0m] [0m[0mLoading global plugins from /home/mauricio/.sbt/1.0/plugins[0m
+[0m[[0m[0minfo[0m] [0m[0mLoading project definition from /home/mauricio/projects/scala/sync-test/project[0m
+[0m[[0m[0minfo[0m] [0m[0mLoading settings for project sync-test from build.sbt ...[0m
+[0m[[0m[0minfo[0m] [0m[0mSet current project to hello-world (in build file:/home/mauricio/projects/scala/sync-test/)[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling 1 Scala source to /home/mauricio/projects/scala/sync-test/target/scala-2.12/classes ...[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere was one deprecation warning (since 2.11.0); re-run with -deprecation for details[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[0minfo[0m] [0m[0mDone compiling.[0m
+[0m[[0m[0minfo[0m] [0m[0mPackaging /home/mauricio/projects/scala/sync-test/target/scala-2.12/hello-world_2.12-1.0.jar ...[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m
+[0m[[0m[0minfo[0m] [0m[0mRunning Main [0m
+The incoming inty: 6. The state: Init
+onOne Called
+The incoming inty: 5. The state: Accumulating
+Adding 5
+onOne Called
+The incoming inty: 4. The state: Accumulating
+Adding 4
+onOne Called
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 2 s, completed Feb 26, 2019 4:43:36 AM[0m
