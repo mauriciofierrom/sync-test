@@ -2,38 +2,38 @@ import scala.annotation.tailrec
 import scala.concurrent.{Future, ExecutionContext}
 
 class Connection(val observer: Observer) {
-  import Connection.GatheringState
+  import Connection._
 
   implicit val ec = ExecutionContext.global
   val r = scala.util.Random
-  var state = GatheringState.Stopped
+  var state: GatheringState = Stopped
   var processed = scala.collection.mutable.ListBuffer.empty[Int]
 
   def startGathering() =
     state match {
-      case GatheringState.Stopped => {
-        state = GatheringState.Active
+      case Stopped => {
+        state = Active
 
         gathering(1)
         stop()
       }
-      case GatheringState.Active => println("Already active")
+      case Active => println("Already active")
     }
 
   def stopGathering() =  {
-    state = GatheringState.Stopped
+    state = Stopped
     Thread.sleep(1000)
     println("Processed diff")
     println(processed.diff(observer.done))
   }
 
-  // @tailrec
-  final def gathering(n: Int): Unit = Future {
+  @tailrec
+  final def gathering(n: Int): Unit =
     state match {
-      case GatheringState.Stopped => {
+      case Stopped => {
         println("Gathering stopped")
       }
-      case GatheringState.Active => {
+      case Active => {
         Thread.sleep(50)
         val n = r.nextInt(7)
         observer.onOne(n)
@@ -42,7 +42,6 @@ class Connection(val observer: Observer) {
         gathering(n + 1)
       }
     }
-  }
 
   def stop() = Future {
     Thread.sleep(3000)
@@ -51,8 +50,7 @@ class Connection(val observer: Observer) {
 }
 
 object Connection {
-  type GatheringState = GatheringState.Value
-  object GatheringState extends Enumeration {
-    val Active, Stopped = Value
-  }
+  sealed abstract class GatheringState
+  case object Active extends GatheringState
+  case object Stopped extends GatheringState
 }
